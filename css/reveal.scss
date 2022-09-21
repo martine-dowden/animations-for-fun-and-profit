@@ -1610,6 +1610,8 @@ $overlayHeaderPadding: 5px;
 
 .reveal .hljs {
 	min-height: 100%;
+	background: #fafafa;
+	line-height: 1.75;
 }
 
 .reveal .hljs table {
@@ -1630,7 +1632,11 @@ $overlayHeaderPadding: 5px;
 }
 
 .reveal .hljs.has-highlights tr:not(.highlight-line) {
-	opacity: 0.4;
+	* { color: gray !important;} 
+}
+.reveal .hljs.has-highlights tr.highlight-line {
+	font-weight: 900;
+	background: white;
 }
 
 .reveal .hljs:not(:first-child).fragment {

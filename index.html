@@ -4,28 +4,887 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Animations For Fun and Profit</title>
+		<meta name="description" content="We can now also give our users transitions between states in our UIs using CSS animations and transitions. Whether we are opening a menu, adding a hover effect, or creating a loader, animating the transition between states can help keep our users oriented and give our applications a much more natural feel. This presentation covers animations, transitions, their limitations and accessibility concerns."/>
+		<meta name="author" content="Martine Dowden">
+		<meta name="keywords" content="CSS, animations, transitions, accessibility, a11y, JavaScript">
 
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/theme/andromeda.css">
 
 		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<link rel="stylesheet" href="plugin/highlight/a11y-light.min.css">
 	</head>
 	<body>
 		<div class="reveal">
+			<div class="border"></div>
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2
-						<aside class="notes">
-						<p>Some notes</p>
-						</aside>
-						<p>Some slide text</p>
-						<aside class="notes">
-						<p>and some more notes</p>
-					</aside>
+
+				<section class="title">
+					<h1 class="r-fit-text">Animations<br>For Fun and Profit</h1>
+					Martine Dowden
 				</section>
+				
+				<section class="about-me">
+					<h1>
+						Martine Dowden
+						<br><small>(She/Her)</small>
+					</h1>
+					<div class="about">
+						<div class="img">
+							<img class="profile-picture" src="./assets/martine.png">	
+						</div>
+						<dl>
+							<dt>Book</dt>
+							<dd class="year hidden"><span>22</span></dd>
+							<dd>Tiny CSS Projects</dd>
+							
+							<dt>Course</dt>
+							<dd class="year"><span>22</span></dd>
+							<dd>CSS Animations & Transitions</dd>
+
+							<dt>GDE</dt>
+							<dd class="year"><span>21</span></dd>
+							<dd>Angular</dd>
+
+							<dt>Book</dt>
+							<dd class="year"><span>20</span></dd>
+							<dd>Architecting CSS</dd>
+
+							<dt>Book</dt>
+							<dd class="year hidden"><span>19</span></dd>
+							<dd>Approachable Accessibility</dd>
+
+							<dt>Microsoft MVP</dt>
+							<dd class="year"><span>19</span></dd>
+							<dd>Developer Technologies</dd>
+
+							<dt>GDE</dt>
+							<dd class="year"><span>18</span></dd>
+							<dd>Web Technologies</dd>
+
+							<dt>Product</dt>
+							<dd class="year"><span>17</span></dd>
+							<dd>FlexePark</dd>
+
+							<dt>Book</dt>
+							<dd class="year"><span>15</span></dd>
+							<dd>Programming Languages ABC++</dd>
+
+							<dt>Ivy Tech</dt>
+							<dd class="year"><span>14</span></dd>
+							<dd>Vis Comm Technical Certificate</dd>
+
+							<dt>Marian University</dt>
+							<dd class="year"><span>09</span></dd>
+							<dd>BS Psychology</dd>
+						</dl>	
+					</div>
+				</section>
+
+				<section class="which-to-choose">
+					<h1>Which to choose?</h1>
+					<div class="col-2">
+						<div>
+							<h2>Transitions</h2>
+							<div class="expansion-panel" id="expansionPanel1">
+								<h3 class="header"><button onclick="toggleExpand('expansionPanel1')" aria-expanded="false" aria-controls="expansionPanel1Body">
+									<span>Panel Header</span> <span class="material-symbols-outlined">expand_more</span>
+								</button></h3>
+								<div class="body" id="expansionPanel1Body">Panel Content</div>
+							</div>
+<pre><code>.panel {
+	/* closed styles */
+	transition: all 250ms ease-in-out;
+}
+.panel.expanded {
+	/* opened styles */
+}
+</code></pre>
+						</div>
+						<div>
+							<h2>Animations</h2>
+							<div class="loader" id="loader">
+								<svg viewBox="0 0 290 100" width="290" height="100">
+									<rect x="0" y="0" width="50" height="100"></rect>
+									<rect x="60" y="0" width="50" height="100"></rect>
+									<rect x="120" y="0" width="50" height="100"></rect>
+									<rect x="180" y="0" width="50" height="100"></rect>
+									<rect x="240" y="0" width="50" height="100"></rect>
+								</svg>
+								<p>Loading...</p>
+							</div>
+<pre><code>@keyframes loading {}
+svg rect {
+	animation: loading 3s ease-in-out infinite;
+}
+</code></pre>
+							<button class="toggle" onclick="toggle('loader')" type="button">
+								<span class="material-symbols-outlined">play_arrow</span>
+							</button>
+						</div>
+					</div>
+				</section>
+
+				<section data-auto-animate class="transitions-title">
+					<h1>Transitions</h1>
+				</section>
+
+				<section data-auto-animate class="transitions-what">
+					<h1>Transitions</h1>
+					<ul class="circles">
+						<li>
+							<span aria-hidden="true" class="material-symbols-outlined">swap_horiz</span> 
+							Between pre-existing states
+						</li>
+						<li>
+							<span class="material-symbols-outlined">looks_one</span>
+							Runs once
+						</li>
+						<li>
+							<span aria-hidden="true" class="material-symbols-outlined">touch_app</span>
+							Requires a trigger
+						</li>
+					</ul>
+				</section>
+
+				<section data-auto-animate class="trasnitions-why">
+					<h1>Transitions</h1>
+					<ul class="circles">
+						<li>
+							<span aria-hidden="true" class="material-symbols-outlined">quick_phrases</span> 
+							Response
+						</li>
+						<li>
+							<span class="material-symbols-outlined">explore</span>
+							Orienting
+						</li>
+						<li>
+							<span aria-hidden="true" class="material-symbols-outlined">eco</span>
+							Natural
+						</li>
+					</ul>
+				</section>
+
+				<section data-auto-animate class="transitions-hover-focus">
+					<h1>Hover & Focus</h1>
+					<div class="col-2">
+						<div>
+							<h2>Link Styles</h2>
+<pre><code data-line-numbers="6,10">a:link, a:visited {
+	color: #4484c5;
+	border-bottom: dotted 2px #4484c5;
+	display: inline-block;
+}
+a:hover, a:focus {
+	border-color: #f78c00;
+	color: #116775;
+	transform: scale(1.5);
+	transition: all 1000ms cubic-bezier(.74,-0.95,.23,1.7);
+}
+</code></pre>
+						</div>
+						<div>
+							<h2>Without</h2>
+							<a href="#/6" class="my-link">My Link</a>
+							<h2>With</h2>
+							<a href="#/6" class="my-link hover-transition">My Link</a>
+						</div>
+					</div>
+				</section>
+
+				<section class="easing-functions">
+					<h1>Easing Functions</h1>
+					<dl class="timing-functions">
+						<div>
+							<dt>linear</dt>
+							<dd><img alt="linear curve" src="./assets/curves/image15.png"></dd>
+							<dd><code>cubic-bezier<br>(0.0, 0.0, 1.0, 1.0)</code></dd>
+						</div>
+						<div>
+							<dt>ease</dt>
+							<dd><img alt="ease curve" src="./assets/curves/image1.png"></dd>
+							<dd><code>cubic-bezier<br>(0.25, 0.1, 0.25, 1.0)</code></dd>
+						</div>
+						<div>
+							<dt>ease-in</dt>
+							<dd><img alt="" src="./assets/curves/image11.png"></dd>
+							<dd><code>cubic-bezier<br>(0.42, 0.0, 1.0, 1.0)</code></dd>
+						</div>
+						<div>
+							<dt>ease-in-out</dt>
+							<dd><img alt="" src="./assets/curves/image12.png"></dd>
+							<dd><code>cubic-bezier<br>(0.42, 0.0, 0.58, 1.0)</code></dd>
+						</div>
+						<div>
+							<dt>ease-out</dt>
+							<dd><img alt="" src="./assets/curves/image2.png"></dd>
+							<dd><code>cubic-bezier<br>(0.42, 0.0, 0.58, 1.0)</code></dd>
+						</div>
+					</dl>
+				</section>
+
+				<section class="curve" class="cubic-bezier">
+					<h1>Cubic Bezier</h1>
+					<div class="col-2">
+						<figure>
+							<img src="./assets/curves/bezier.svg" width="400px">
+							<figcaption><code>cubic-bezier<br>(0, 0.71, 0.64, 1.23)</code></figcaption>
+						</figure>
+						<div>
+							<h2>The Curve</h2>
+							<ul>
+								<li>Defined by 4 points, <code>P<sub>0</sub></code>, <code>P<sub>1</sub></code>, <code>P<sub>2</sub></code>, and <code>P<sub>3</sub></code></li>
+								<li><code>P<sub>0</sub></code> and <code>P<sub>3</sub></code> define the beginning and end</li>
+								<li><code>P<sub>1</sub></code> and <code>P<sub>2</sub></code> represent the control points to give the curve its shape</li>
+								<li>Points are defined by (x, y) coordinates</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<section class="curve" class="cubic-bezier-css">
+					<h1>Cubic Bezier</h1>
+					<div class="col-2">
+						<figure>
+							<img src="./assets/curves/bezier.svg" width="400px">
+							<figcaption><code>cubic-bezier<br>(0, 0.71, 0.64, 1.23)</code></figcaption>
+						</figure>
+						<div>
+							<h2>CSS function</h2>
+							<ul>
+								<li>Pre-defines <code>P<sub>0</sub></code> and <code>P<sub>3</sub></code> at <code>(0, 0) and (1, 1)</code></li>
+								<li>You define <code>P<sub>1</sub></code> and <code>P<sub>2</sub></code></li>
+								<li>The <code>x</code> values need to remain between <code>0</code> and <code>1</code> (inclusive).</li>
+								<li><code>cubic-bezier(x1, y1, x2, y2)</code></li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<section class="curve" class="cubic-bezier-animation">
+					<h1>Cubic Bezier</h1>
+					<div class="col-2">
+						<figure>
+							<img src="./assets/curves/bezier.svg" width="400px">
+							<figcaption><code>cubic-bezier<br>(0, 0.71, 0.64, 1.23)</code></figcaption>
+						</figure>
+						<div>
+							<h2>The Animation</h2>
+							<svg viewBox="0 0 400 400" width="400" height="400" class="bounce" id="bounce">
+								<circle class="ball" r="50" cx="220" cy="300"></circle>
+								<line x1="0" y1="350" x2="400" y2="350"></line>
+							</svg>
+							<button class="toggle" onclick="toggle('bounce')" type="button" id="bounce">
+								<span class="material-symbols-outlined">play_arrow</span>
+							</button>
+						</div>
+					</div>
+				</section>
+
+				<section data-auto-animate class="auto-height">
+					<h1>Limitations</h1>
+					<h2><code>height: auto</code></h2>
+					<div class="col-2">
+						<div>
+<pre><code data-line-numbers="8-11|8-11,19">.header {
+	...
+	border-radius: 8px;
+	transition: all 250ms ease-in-out;
+}
+.body {
+	...
+	height: 0;
+	overflow: hidden;
+	transform-origin: top center;
+	transition: height 250ms ease-in-out;
+}
+.expanded .header {
+	border-radius: 8px 8px 0 0;
+}
+.expanded .body {
+	border: solid 1px #4484c5;
+	border-top: none;
+	height: auto;
+	padding: 1rem;
+}
+</code></pre>
+						</div>
+						<div class="expansion-panel limitations" id="expansionPanel2">
+							<h3 class="header"><button onclick="toggleExpand('expansionPanel2')" aria-expanded="false" aria-controls="expansionPanel1Body">
+								<span>Panel Header</span> <span class="material-symbols-outlined">expand_more</span>
+							</button></h3>
+							<div class="body" id="expansionPanel1Body">Panel Content</div>
+						</div>
+					</div>
+				</section>
+
+				<section data-auto-animate class="auto-height">
+					<h1>Limitations</h1>
+					<h2><code>height: auto</code></h2>
+					<div class="col-2">
+						<div>
+<pre><code data-line-numbers="8-11,19">.header {
+	...
+	border-radius: 8px;
+	transition: all 250ms ease-in-out;
+}
+.body {
+	...
+	height: 0;
+	overflow: hidden;
+	transform-origin: top center;
+	transition: height 250ms ease-in-out;
+}
+.expanded .header {
+	border-radius: 8px 8px 0 0;
+}
+.expanded .body {
+	border: solid 1px #4484c5;
+	border-top: none;
+	height: 300px;
+	padding: 1rem;
+}
+</code></pre>
+						</div>
+						<div class="expansion-panel limitations fixed" id="expansionPanel3">
+							<h3 class="header"><button onclick="toggleExpand('expansionPanel3')" aria-expanded="false" aria-controls="expansionPanel1Body">
+								<span>Panel Header</span> <span class="material-symbols-outlined">expand_more</span>
+							</button></h3>
+							<div class="body" id="expansionPanel1Body">Panel Content</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="limitations-height-auto">
+					<h1>Some Solutions</h1>
+					<ul class="circles">
+						<li>
+							<span class="material-symbols-outlined" aria-hidden="true">expand</span>
+							<code>max-height</code>
+						</li>
+						<li>
+							<span aria-hidden="true" class="material-symbols-outlined">zoom_out_map</span>
+							<code>transform: scale()</code>
+						</li>
+						<li>
+							<img src="./assets/js.png" alt="">
+							JavaScript
+						</li>
+					</ul>
+				</section>
+
+				<section class="solutions">
+					<h1>Accessibility</h1>
+					<h2>Showing and Hiding Content</h2>
+					<ul>
+						<li>Use semantic tags</li>
+						<li>Test for keyboard accessibility</li>
+						<li>Add ARIA for screen reader accessibility</li>
+					</ul>
+					<p>You will need JavaScript to make your show / hides accessible</p>
+				</section>
+
+				<section class="a11y-motion transition-a11y">
+					<h1>Accessibility and Motion</h1>
+					<p><strong><a href="https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html" target="_blank">Success Criterion 2.3.3 Animation from Interactions:</a></strong></p>
+					<p>Motion animation triggered by interaction can be disabled, unless the animation is essential to the functionality or the information being conveyed.</p>
+<pre><code class="css">@media (prefers-reduced-motion: reduce) {
+	/** Disable animations and transitions here **/
+}
+
+/** OR **/
+
+@media (prefers-reduced-motion: no-preference) {
+	/** Animations and transitions go here **/
+}
+</code></pre>
+				</section>
+
+				<section class="what-about-display-none">
+					<h1>What about using display: none?</h1>
+					<h2 class="fragment">Animations</h2>
+				</section>
+
+				<section class="animations-how">
+					<h1>Animations</h1>
+					<ul class="circles">
+						<li>
+							<span aria-hidden="true" class="material-symbols-outlined">alternate_email</span> 
+							Uses keyframes
+						</li>
+						<li>
+							<span aria-hidden="true" class="material-symbols-outlined">all_inclusive</span>
+							Runs any number of times
+						</li>
+						<li>
+							<span aria-hidden="true" class="material-symbols-outlined">auto_mode</span>
+							Does not require a trigger
+						</li>
+					</ul>
+				</section>
+
+				<section class="animations-why">
+					<h1>Animations</h1>
+					<ul class="circles">
+						<li>
+							<span aria-hidden="true" class="material-symbols-outlined">switch_access_shortcut</span>
+							Complex Animations
+						</li>
+						<li>
+							<span aria-hidden="true" class="material-symbols-outlined">all_inclusive</span>
+							Repeated animations
+						</li>
+						<li>
+							<span aria-hidden="true" class="material-symbols-outlined">visibility_off</span>
+							<code>display: none</code>
+						</li>
+					</ul>
+				</section>
+
+				<section class="keyframe-structures">
+					<h1>Keyframe Structures</h1>
+<pre><code class="css">@keyframes animation-name {
+	from {   }
+  to {   }
+}
+
+.class {
+	animation: duration | easing-function | delay | iteration-count | direction | fill-mode | play-state | name 
+}
+
+</code></pre>
+					<p class="note">Declarations in a keyframe qualified with <code>!important</code> are ignored.</p>
+				</section>
+
+				<section class="animations revisit-expansion">
+					<h1>Revisiting The Expansion Panel</h1>
+					<div class="col-2">
+						<div>
+<pre><code>@keyframes expansion {
+	from { transform: scaleY(0); }
+	to { transform: scaleY(1); }
+}
+.panel .body {
+	overflow: hidden;
+	transform-origin: top;
+	display: none;
+}
+.panel.expanded .body {
+	display: flex;
+	animation: expansion 250ms ease-in-out;
+}
+</code></pre>
+						</div>
+						<div class="expansion-panel animated" id="animatedPanel">
+							<h2 class="header"><button onclick="toggleExpand('animatedPanel')" aria-expanded="false" aria-controls="expansionPanel1Body">
+								<span>Panel Header</span> <span class="material-symbols-outlined">expand_more</span>
+							</button></h2>
+							<div class="body" id="expansionPanel1Body">Panel Content</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="revisit-expansion-2-states">
+					<h1>Closing the Panel</h1>
+					<h2>Our 2 states</h2>
+<pre><code class="css" data-line-numbers="5-11">@keyframes expansion {
+	from { transform: scaleY(0); }
+	to { transform: scaleY(1); }
+}
+.panel .body {
+	display: none;
+	transform-origin: top;
+}
+.panel.expanded .body {
+	display: block;
+}
+.panel.open .body {
+	display: block;
+	animation: expansion 250ms ease-in-out;
+}
+.panel.close .body {
+	animation: expansion 250ms ease-in-out reverse;
+}
+</code></pre>
+				</section>
+				
+				<section class="revisit-expansion-html">
+					<h1>Closing the Panel</h1>
+					<h2>HTML</h2>
+<pre><code class="html" data-line-numbers="4|9">function toggleExpandAnimated(elem) {
+	<div class="expansion-panel panel" id="panel">
+		<h2 class="header">
+			<button onclick="animatePanel('panel')">
+				<span>Panel Header</span>
+				<span class="material-symbols-outlined">expand_more</span>
+			</button>
+		</h2>
+		<div class="body" onanimationend="togglePanel('panel')">
+			Panel Content
+		</div>
+	</div>
+</code></pre>
+
+				</section>
+
+				<section class="animations revisit-expansion-trigger">
+					<h1>Closing the Panel</h1>
+					<h2>Triggering the animation</h2>
+<pre><code class="css" data-line-numbers="12-18">@keyframes expansion {
+	from { transform: scaleY(0); }
+	to { transform: scaleY(1); }
+}
+.panel .body {
+	display: none;
+	transform-origin: top;
+}
+.panel.expanded .body {
+	display: block;
+}
+.panel.open .body {
+	display: block;
+	animation: expansion 250ms ease-in-out;
+}
+.panel.close .body {
+	animation: expansion 250ms ease-in-out reverse;
+}
+</code></pre>
+				</section>
+
+				<section class="revisit-expansion-js">
+					<h1>Closing the Panel</h1>
+					<h2>JavaScript</h2>
+<pre><code class="javascript" data-line-numbers="1-9|11-21">function animatePanel(elem) {
+	const _panel = document.getElementById(elem);
+	const isOpen = _panel.classList.contains('expanded')
+	if (isOpen) {
+		_panel.classList.add('close')
+	} else {
+		_panel.classList.add('open')
+	}
+}
+
+function togglePanel(panel) {
+	const _panel = document.getElementById(elem);
+	const isOpen = _panel.classList.contains('open')
+	if (isOpen) {
+		_panel.classList.remove('open')
+		_panel.classList.add('expanded')
+	} else {
+		_panel.classList.remove('expanded')
+		_panel.classList.remove('close')
+	}
+}
+</code></pre>
+				</section>
+
+				<section class="revisit-expansion-output">
+					<h1>Output</h1>
+					<div class="expansion-panel animated2" id="animatedPanel2">
+						<h2 class="header"><button onclick="toggleExpandAnimated('animatedPanel2')" aria-expanded="false" aria-controls="animatedPanel2Body">
+							<span>Panel Header</span> <span class="material-symbols-outlined">expand_more</span>
+						</button></h2>
+						<div class="body" id="animatedPanel2Body" onanimationend="togglePanel('animatedPanel2')">Panel Content</div>
+					</div>
+				</section>
+
+				<section class="showing-hidding-animations-a11y">
+					<h1>Accessibility</h1>
+					<h2>Showing and Hiding Content</h2>
+					<p>Same as with transitions</p>
+					<ul>
+						<li>Use semantic tags</li>
+						<li>Test for keyboard accessibility</li>
+						<li>Add ARIA for screen reader accessibility</li>
+					</ul>
+				</section>
+
+				<section class="animations-and-svgs">
+					<h1>Animations and SVGs</h1>
+					<div class="loader" id="loader2">
+						<svg viewBox="0 0 290 100" width="290" height="100">
+							<rect x="0" y="0" width="50" height="100"></rect>
+							<rect x="60" y="0" width="50" height="100"></rect>
+							<rect x="120" y="0" width="50" height="100"></rect>
+							<rect x="180" y="0" width="50" height="100"></rect>
+							<rect x="240" y="0" width="50" height="100"></rect>
+						</svg>
+						<p>Loading...</p>
+					</div>
+					<button class="toggle" onclick="toggle('loader2')" type="button">
+						<span class="material-symbols-outlined">play_arrow</span>
+					</button>
+				</section>
+
+				<section class="the-svg">
+					<h1>The SVG</h1>
+<pre><code class="html"><div class="loader">
+	<svg viewBox="0 0 290 100" width="290" height="100">
+		<rect x="0" y="0" width="50" height="100"></rect>
+		<rect x="60" y="0" width="50" height="100"></rect>
+		<rect x="120" y="0" width="50" height="100"></rect>
+		<rect x="180" y="0" width="50" height="100"></rect>
+		<rect x="240" y="0" width="50" height="100"></rect>
+	</svg>
+	<p>Loading...</p>
+</div>
+</code></pre>
+				</section>
+
+				<section class="the-svg-css">
+					<h1>The CSS</h1>
+					<div class="loader">
+						<svg viewBox="0 0 290 100" width="290" height="100">
+							<rect x="0" y="0" width="50" height="100"></rect>
+							<rect x="60" y="0" width="50" height="100"></rect>
+							<rect x="120" y="0" width="50" height="100"></rect>
+							<rect x="180" y="0" width="50" height="100"></rect>
+							<rect x="240" y="0" width="50" height="100"></rect>
+						</svg>
+						<p>Loading...</p>
+					</div>
+<pre><code class="css">.loader svg {
+	display: block;
+	margin: 1rem auto;
+}
+rect:nth-of-type(1) { fill: #122849; }
+rect:nth-of-type(2) { fill: #0A3F7F; }
+rect:nth-of-type(3) { fill: #4484c5; }
+rect:nth-of-type(4) { fill: #0A3F7F; }
+rect:nth-of-type(5) { fill: #122849; }
+</code></pre>
+			  </section>
+
+				<section data-auto-animate class="the-svg-css-animation">
+					<h1>Animations and SVGs</h1>
+					<div class="loader no-delay" id="loader3">
+						<svg viewBox="0 0 290 100" width="290" height="100">
+							<rect x="0" y="0" width="50" height="100"></rect>
+							<rect x="60" y="0" width="50" height="100"></rect>
+							<rect x="120" y="0" width="50" height="100"></rect>
+							<rect x="180" y="0" width="50" height="100"></rect>
+							<rect x="240" y="0" width="50" height="100"></rect>
+						</svg>
+						<p>Loading...</p>
+					</div>
+					<button class="toggle" onclick="toggle('loader3')" type="button">
+						<span class="material-symbols-outlined">play_arrow</span>
+					</button>
+<pre><code data-line-numbers="1-5|8" class="css">@keyframes loader {
+	from { transform: scaleY(1); }
+	50% { transform: scaleY(0); }
+	to { transform: scaleY(1); }
+}
+.loader rect {
+	transform-origin: center;
+	animation: loader 3s ease-in-out infinite;
+}
+</code></pre>
+				</section>
+
+				<section data-auto-animate class="the-svg-css-deplay">
+					<h1>Animations and SVGs</h1>
+<pre><code data-line-numbers="10-14" class="css">@keyframes loader {
+	from { transform: scaleY(1); }
+	50% { transform: scaleY(0); }
+	to { transform: scaleY(1); }
+}
+.loader rect {
+	transform-origin: center;
+	animation: loader 3s ease-in-out infinite;
+}
+.loader rect:nth-of-type(1) { fill: #122849; animation-delay: 0; }
+.loader rect:nth-of-type(2) { fill: #0A3F7F; animation-delay: 300ms; }
+.loader rect:nth-of-type(3) { fill: #4484c5; animation-delay: 600ms; }
+.loader rect:nth-of-type(4) { fill: #0A3F7F; animation-delay: 900ms; }
+.loader rect:nth-of-type(5) { fill: #122849; animation-delay: 1200ms; }
+</code></pre>
+				</section>
+
+				<section class="the-svg-css-output">
+					<h1>Output</h1>
+					<div class="loader" id="loader4">
+						<svg viewBox="0 0 290 100" width="290" height="100">
+							<rect x="0" y="0" width="50" height="100"></rect>
+							<rect x="60" y="0" width="50" height="100"></rect>
+							<rect x="120" y="0" width="50" height="100"></rect>
+							<rect x="180" y="0" width="50" height="100"></rect>
+							<rect x="240" y="0" width="50" height="100"></rect>
+						</svg>
+						<p>Loading...</p>
+					</div>
+					<button class="toggle" onclick="toggle('loader4')" type="button">
+						<span class="material-symbols-outlined">play_arrow</span>
+					</button>
+</code></pre>
+				</section>
+
+				<section class="a11y-motion pause-stop-hide">
+					<h1>Accessibility and Motion</h1>
+					<p><strong><a href="https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide.html" target="_blank">Success Criterion 2.2.2 Pause, Stop, Hide:</a></strong></p>
+					<p>For moving, blinking, scrolling, or auto-updating information, all of the following are true:</p>
+					<div class="col-2">
+						<div>
+							<p>For any</p>
+							<ul>
+								<li>moving,</li>
+								<li>blinking,</li>
+								<li>or scrolling information</li>
+							</ul>
+						</div>
+						<div>
+							<p>that</p>
+							<ol>
+								<li>starts automatically,</li>
+								<li>lasts more than five seconds,</li>
+								<li>and is presented in parallel with other content,</li>
+							</ol>
+						</div>
+					</div>
+					<p>there is a mechanism for the user to pause, stop, or hide it <strong>unless the movement, blinking, or scrolling is part of an activity where it is essential</strong>...</p>
+				</section>
+
+				<section class="a11y-motion flashing">
+					<h1>Accessibility and Flashing</h1>
+					<p><strong><a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/seizure-does-not-violate.html" target="_bank">2.3.1 Three Flashes or Below Threshold:</a></strong></p> 
+					<p>Web pages do not contain anything that:</p>
+					<ul>
+						<li>flashes more than three times in any one second period,</li>
+						<li>or the flash is below the general flash and red flash thresholds.</li>
+					</ul>
+				</section>
+
+				<section data-auto-animate class="transform-origin">
+					<h1>Transform Origin</h1>
+<pre><code data-line-numbers="2" class="css">.loader rect {
+	transform-origin: center;
+	animation: loader 3s ease-in-out infinite;
+}
+</code></pre>
+					<p class="fragment" data-id="transform-origin">the point around which a transformation is applied</p>
+				</section>
+
+				<section data-auto-animate class="transform-origin">
+					<h1>Transform Origin</h1>
+					<p><code>transform-origin: top right;</code></p>
+					<p data-id="transform-origin">the point around which a transformation is applied</p>
+					<svg viewBox="0 0 200 200" width="250" height="250" style="border: solid 1px gray">
+						<rect x="50" y="50" width="100" height="100" fill="none" stroke="#f78c00" stroke-dasharray="5 5"></rect>
+						<circle cx="150" cy="50" r="8" fill="#f78c00"></circle>
+						<rect x="50" y="50" width="100" height="100" fill="none" stroke="#0A3F7F" style="transform-box: fill-box; transform-origin: top right; transform: rotate(-25deg)"></rect>
+					</svg>
+				</section>
+				
+				<section class="transform-origin" data-auto-animate>
+					<h1>Transform Origin</h1>
+					<h2>Defaults</h2>
+					<div class="col-2" data-id="col">
+						<div>
+							<h3>HTML</h3>
+							<div style="position: relative; border: solid 1px gray; height: 200px; width: 200px; margin: 0 auto;">
+								<div style="border: dashed 1px #f78c00; height: 100px; width: 100px; position: absolute; top: 50px; left: 50px"></div>
+								<div style="border: solid 1px #0A3F7F; height: 100px; width: 100px; position: absolute; top: 50px; left: 50px; transform: rotate(-25deg)"></div>
+								<div style="height: 16px; width: 16px; position: absolute; top: 92px; left: 92px; background-color: #f78c00; border-radius: 50%;"></div>
+							</div>
+							<p><code>transform-origin: center</code></p>
+							
+						</div>
+						<div data-id="svg">
+							<h3>SVG</h3>
+							<svg viewBox="0 0 200 200" width="200" height="200" style="border: solid 1px gray; overflow: visible">
+								<rect x="50" y="50" width="100" height="100" fill="none" stroke="#f78c00" stroke-dasharray="5 5"></rect>
+								<circle cx="0" cy="0" r="8" fill="#f78c00"></circle>
+								<rect x="50" y="50" width="100" height="100" fill="none" stroke="#0A3F7F" style="transform: rotate(-25deg)"></rect>
+							</svg>
+							<p><code>transform-origin: top left</code><br>of the SVG</p>
+						</div>
+					</div>
+				</section>
+
+				<section class="transform-origin" data-auto-animate>
+					<h1>Transform Origin</h1>
+					<h2>Adjusting transform-origin of the svg</h2>
+					<div class="col-2" data-id="col">
+						<div data-id="svg">
+							<h3>Default</h3>
+							<svg viewBox="0 0 200 200" width="200" height="200" style="border: solid 1px gray; overflow: visible">
+								<rect x="50" y="50" width="100" height="100" fill="none" stroke="#f78c00" stroke-dasharray="5 5"></rect>
+								<circle cx="0" cy="0" r="8" fill="#f78c00"></circle>
+								<rect x="50" y="50" width="100" height="100" fill="none" stroke="#0A3F7F" style="transform: rotate(-25deg)"></rect>
+							</svg>
+<pre><code class="css">.rect {
+	transform-box: viewbox;
+	transform-origin: top left;
+}
+</code></pre>
+						</div>
+						<div>
+							<h3>Adjusted</h3>
+							<svg viewBox="0 0 200 200" width="200" height="200" style="border: solid 1px gray">
+								<rect x="50" y="50" width="100" height="100" fill="none" stroke="#f78c00" stroke-dasharray="5 5"></rect>
+								<circle cx="150" cy="50" r="8" fill="#f78c00"></circle>
+								<rect x="50" y="50" width="100" height="100" fill="none" stroke="#0A3F7F" style="transform-box: fill-box; transform-origin: top right; transform: rotate(-25deg)"></rect>
+							</svg>
+<pre><code class="css">.rect {
+	transform-box: fill-box;
+	transform-origin: top right;
+}
+</code></pre>
+						</div>
+					</div>
+				</section>
+
+				<section class="timing">
+					<h1>Timing</h1>
+					<strong>250 ms</strong>
+					<p>up to 500ms for complex animations</p>
+
+					<p class="note">Loaders and other extremely complex animations can have much longer animations</p>
+				</section>
+
+				<section class="recap">
+					<h1>What We Covered</h1>
+					<ul>
+						<li>Difference between animations and transitions</li>
+						<li>When to use which</li>
+						<li>Easing functions</li>
+						<li>CSS limitations</li>
+						<li>Animations in SVGs</li>
+						<li>Accessibility Concerns</li>
+					</ul>
+				</section>
+
+				<section class="thank-you">
+					<div style="float: right" class="pubs">
+						<img src="./assets/css-animations-and-transitions.jpg" alt="Live Projects: CSS Animations & Transitions">
+						<img src="./assets/tiny-css.png" alt="Tiny CSS Projects">
+						<img src="./assets/approachable-accessibility.jpg" alt="Approachable Accessibility">
+					</div>
+					<h1>Martine Dowden</h1>
+					<a class="twitter" href="https://twitter.com/Martine_Dowden" target="_blank">@Martine_Dowden</a>
+					<figure class="qr">
+						<img style="margin: 5px" src="./assets/martine-dev-qr.svg">
+						<figcaption style="font-size: 1.25rem"><a href="https://martine.dev" target="_blank" rel="noopener">martine.dev</a></figcaption>
+					</figure>
+					<div class="contact-me">
+						<div class="counter"></div>
+						<h2>Contact me about</h2>
+						<ul>
+							<li>Software Development</li>
+							<li>Product Management</li>
+							<li>Coaching & Training</li>
+						</ul>
+						<img class="ags" src="./assets/ags.svg" alt="andromeda Galactic Solutions">
+					</div>
+				</section>
+			
+			</div>
+			<!-- End Slides -->
+			<div class='footer'>
+				<a href="https://twitter.com/Martine_Dowden" target="_blank">@Martine_Dowden</a> | Animations for Fun and Profit
 			</div>
 		</div>
 
@@ -39,10 +898,83 @@
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
+				slideNumber: true,
+
+				// The "normal" size of the presentation, aspect ratio will
+				// be preserved when the presentation is scaled to fit different
+				// resolutions. Can be specified using percentage units.
+				width: 960,
+				height: 700,
+
+				// Factor of the display size that should remain empty around
+				// the content
+				margin: 0.04,
+
+				// Bounds for smallest/largest possible scale to apply to content
+				minScale: 0.2,
+				maxScale: 2.0,
 
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMarkdown ]
 			});
+		</script>
+		<script>
+			function toggle(elem) {
+				const _elem = document.getElementById(elem);
+				const button = event.target.nodeName === 'BUTTON' ? event.target : event.target.closest('button');
+				if (_elem.classList.contains('animated')) {
+					_elem.classList.remove('animated')
+					button.innerHTML = `<span class="material-symbols-outlined">play_arrow</span>`;					
+				} else {
+					_elem.classList.add('animated')
+					button.innerHTML = `<span class="material-symbols-outlined">pause</span>`;
+				}
+			}
+
+			function toggleExpand(elem) {
+				const _elem = document.getElementById(elem);
+				const button = event.target.nodeName === 'BUTTON' ? event.target : event.target.closest('button');
+				const icon = button.querySelector('.material-symbols-outlined')
+				if (_elem.classList.contains('expanded')) {
+					_elem.classList.remove('expanded')
+					icon.innerText = `expand_more`;
+					button.setAttribute('aria-expanded', false);
+				} else {
+					_elem.classList.add('expanded')
+					icon.innerText = `expand_less`;
+					button.setAttribute('aria-expanded', true);
+				}
+			}
+
+			function toggleExpandAnimated(elem) {
+				const _elem = document.getElementById(elem);
+				const button = _elem.querySelector('button')
+				const icon = button.querySelector('.material-symbols-outlined')
+				if (_elem.classList.contains('expanded')) {
+					_elem.classList.add('close')
+					icon.innerText = `expand_more`;
+				} else {
+					_elem.classList.add('open')
+					icon.innerText = `expand_less`;
+				}
+				
+			}
+			
+			function togglePanel(elem) {
+				console.log('animationEnd', event)
+				const _elem = document.getElementById(elem);
+				const body = _elem.querySelector('.body')
+				const button = _elem.querySelector('button')
+				if (_elem.classList.contains('open')) {
+					_elem.classList.remove('open')
+					_elem.classList.add('expanded')
+					button.setAttribute('aria-expanded', true);
+				} else {
+					_elem.classList.remove('expanded')
+					_elem.classList.remove('close')
+					button.setAttribute('aria-expanded', false);
+				}
+			}
 		</script>
 	</body>
 </html>

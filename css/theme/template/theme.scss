@@ -1,5 +1,6 @@
 // Base theme template for reveal.js
 
+
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
@@ -60,6 +61,14 @@
 	word-wrap: break-word;
 }
 
+.reveal h2 {
+	color: #d87b00;
+}
+
+.reveal h3 {
+	color: #6b369f;
+}
+
 .reveal h1 {font-size: var(--r-heading1-size); }
 .reveal h2 {font-size: var(--r-heading2-size); }
 .reveal h3 {font-size: var(--r-heading3-size); }
@@ -69,10 +78,18 @@
 	text-shadow: var(--r-heading1-text-shadow);
 }
 
-
 /*********************************************
  * OTHER
  *********************************************/
+
+ 
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 500,
+  'GRAD' 0,
+  'opsz' 48
+}
 
 .reveal p {
 	margin: var(--r-block-margin) 0;
@@ -173,13 +190,11 @@
 	margin: var(--r-block-margin) auto;
 
 	text-align: left;
-	font-size: 0.55em;
+	font-size: 1rem;
 	font-family: var(--r-code-font);
 	line-height: 1.2em;
 
 	word-wrap: break-word;
-
-	box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 .reveal code {
@@ -201,7 +216,7 @@
 }
 
 .reveal .code-wrapper code {
-	white-space: pre;
+	white-space: pre-wrap;
 }
 
 .reveal table {
@@ -329,3 +344,5 @@
         background-color: var(--r-background-color);
     }
 }
+
+

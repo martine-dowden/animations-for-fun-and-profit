@@ -1,0 +1,48 @@
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Montserrat:wght@400;700&family=Raleway:ital,wght@0,400;0,600;0,700;1,500&display=swap');
+
+html * {
+	color-profile: sRGB;
+	rendering-intent: auto;
+}
+
+
+$base03:    #122849;
+$base02:    #0A3F7F;
+$base01:    #4484c5;
+$base00:    #878787;
+$base0:     #94a9ac;
+$base1:     #ffffff;
+$base2:     #fafafa;
+$base3:     #f5f5f5;
+$yellow:    #F7AA00;
+$orange:    #f78c00;
+$red:       #a50503;
+$magenta:   #d33682;
+$violet:    #6c71c4;
+$blue:      #025ac6;
+$cyan:      #00eeda;
+$green:     #3b9b00;
+
+// Override theme settings (see ../template/settings.scss)
+$mainColor: $base03;
+$headingColor: $base02;
+$headingTextShadow: none;
+$backgroundColor: $base1;
+$linkColor: $base02;
+$linkColorHover: lighten( $linkColor, 20% );
+$selectionBackgroundColor: $yellow;
+
+// Change text colors against light slide backgrounds
+@include light-bg-text-color(#222);
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
