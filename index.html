@@ -26,6 +26,7 @@
 					<h1 class="r-fit-text">CSS in Motion</h1>
 					<h2>Animations For Fun and Profit</h2>
 					Martine Dowden
+					<aside class="notes">CW about motion in the slide deck</aside>
 				</section>
 				
 				<section class="about-me">
@@ -39,7 +40,7 @@
 						</div>
 						<dl>
 							<dt>Book</dt>
-							<dd class="year hidden"><span>22</span></dd>
+							<dd class="year"><span>23</span></dd>
 							<dd>Tiny CSS Projects</dd>
 							
 							<dt>Course</dt>
@@ -87,6 +88,14 @@
 							<dd>BS Psychology</dd>
 						</dl>	
 					</div>
+
+					<aside class="notes">
+						Reason for talk: 
+						<ul>
+							<li><strong>Why the talk?</strong> Improving the user interface with animations -- Makes UI feel more natural</li>
+							<li><strong>So Why am I giving this talk at a JavaScript conference?</strong> There are limitations to CSS animations that require JS</li>
+						</ul>
+					</aside>
 				</section>
 
 				<section class="which-to-choose">
@@ -131,46 +140,96 @@ svg rect {
 							</button>
 						</div>
 					</div>
+
+					<aside class="notes">
+						<p>Choosing between when to use an animation vs when to use a transition</p>
+						<h2>Transitions</h2>
+						<ul>
+							<li>Between 2 states</li>
+							<li>Often used in response to a user action</li>
+							<li>Triggered by the state change</li>
+						</ul>
+						<h2>Animations</h2>
+							<ul>
+								<li>Uses keyframes</li>
+								<li>More complex animations</li>
+							</ul>
+					</aside>
 				</section>
 
 				<section data-auto-animate class="transitions-title">
 					<h1>Transitions</h1>
+					<aside class="notes">First let's take a closer look at transitions</aside>
 				</section>
 
 				<section data-auto-animate class="transitions-what">
 					<h1>Transitions</h1>
 					<ul class="circles">
-						<li>
+						<li class="fragment fade-up">
 							<span aria-hidden="true" class="material-symbols-outlined">swap_horiz</span> 
 							Between pre-existing states
 						</li>
-						<li>
+						<li class="fragment fade-up">
 							<span class="material-symbols-outlined">looks_one</span>
 							Runs once
 						</li>
-						<li>
+						<li class="fragment fade-up">
 							<span aria-hidden="true" class="material-symbols-outlined">touch_app</span>
 							Requires a trigger
 						</li>
 					</ul>
+					<aside class="notes">
+						<ul>
+							<li>
+								<strong>Between states</strong>:
+								<ul>
+									<li>gaining focus</li>
+									<li>on hover</li>
+									<li>adding or removing a class via JavaScript</li>
+									<li>change in content length, if we are getting real time data for example</li>
+								</ul>
+							</li>
+							<li>
+								<strong>Runs once</strong>:
+								<ul>
+									<li>Once it is triggered, it will run as many times as the transition defines and then be done until the state changes again</li>
+									<li><strong>Requires a state change to trigger</strong></li>
+								</ul>
+							</li>
+						</ul>
+					</aside>
 				</section>
 
 				<section data-auto-animate class="trasnitions-why">
-					<h1>Transitions</h1>
+					<h1>Why use a Transition</h1>
 					<ul class="circles">
-						<li>
+						<li class="fragment fade-up">
 							<span aria-hidden="true" class="material-symbols-outlined">quick_phrases</span> 
 							Response
 						</li>
-						<li>
+						<li class="fragment fade-up">
 							<span class="material-symbols-outlined">explore</span>
 							Orienting
 						</li>
-						<li>
+						<li class="fragment fade-up">
 							<span aria-hidden="true" class="material-symbols-outlined">eco</span>
 							Natural
 						</li>
 					</ul>
+					<aside class="notes">
+						<ul>
+							<li>
+								<strong>Response to a user's action</strong>: allows the user to follow along with the UI change they have triggered
+							</li>
+							<li>
+								<strong>Orienting</strong>: while opening a collapsible panel for example, the user can watch it open and follow along with how the page elements are pushed in order to expose the content of the panel.
+							</li>
+							<li>
+								<strong>Natural</strong>: Think of an automatic door, once you stand in front of it it is not instantly open, there is a transition time while the doors are moving out of the way to allow you to proceed. By adding transitions to content we reintroduce that same concept into our applications, making our UIs feel more intuitive and natural.
+							</li>
+						</ul>
+						<div style="color:red;font-weight:bold;">--> let's look at an example of creating a transition on hover</div>
+					</aside>
 				</section>
 
 				<section data-auto-animate class="transitions-hover-focus">
@@ -198,6 +257,18 @@ a:hover, a:focus {
 							<a href="#/6" class="my-link hover-transition">My Link</a>
 						</div>
 					</div>
+
+					<aside class="notes">
+						<p>Here we have a link, that we will hover over. The hover effect has been heavily dramatized so that it would show up on better in the presentation but it will allow us to illustrate the concepts that we have just talked about.</p>
+						<p><strong>Without the transition</strong>, the change is immediately applied and removed</strong></p>
+						<p><strong>Once the transition is applied</strong>, we can watch the change happen and the effect is a lot less jarring</p>
+						<div style="color:red;font-weight:bold;">
+							<p>
+								--> We often think of transitions as simple, but you'll notice that first we shrink and then expand. How do we achieve more complex transition effects?
+							</p>
+							<p>We can manipulate the acceleration of change between our 2 states via the <code>animation-timing-function</code> property using a bezier curve which even if you have never written a custom one, you have been using already as part of your animations and transitions.</p>
+					</div>
+					</aside>
 				</section>
 
 				<section class="easing-functions">
@@ -229,6 +300,10 @@ a:hover, a:focus {
 							<dd><code>cubic-bezier<br>(0.42, 0.0, 0.58, 1.0)</code></dd>
 						</div>
 					</dl>
+					<aside class="notes">
+						<p>The keyword values we use in our animations and transitions are bezier curves under the covers. So if you've use <code>ease-in</code>, <code>ease-in-out</code>, or any of the other 3 that CSS provides for us, you have used a bezier curve.</p>
+						<div style="color:red;font-weight:bold;">--> So let's break down how the bezier curve works so we can do effects like we saw in the previous slide where we didn't scale directly from a scale(1) to scale(1.5) but got smaller before we got bigger and reached our final size?</div>
+					</aside>
 				</section>
 
 				<section class="curve" class="cubic-bezier">
@@ -248,6 +323,17 @@ a:hover, a:focus {
 							</ul>
 						</div>
 					</div>
+					<aside class="notes">
+						<p>The bezier curve is defined by 4 points</p>
+						<ul>
+							<li>P<sub>0</sub> and P<sub>3</sub> define the start and end of the curve</li>
+							<li>The other 2, P<sub>1</sub> and P<sub>2</sub> define the handles that will control the shape of the curve</li>
+						</ul>
+						<p>These points are defined using (x, y) coordinates on a cartesian plane</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> in CSS you'll notice that we define only 4 points, since each point is defined using an x and a y coordinate should'nt be passing in 8 values?</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="curve" class="cubic-bezier-css">
@@ -267,26 +353,42 @@ a:hover, a:focus {
 							</ul>
 						</div>
 					</div>
+					<aside class="notes">
+						<p>The reason we only define 4 values for CSS is that CSS takes care of P<sub>0</sub> and P<sub>3</sub> (The beginning and end points of the curve) for use.</p>
+						<p>The only 2 values we need to define are the those of the handles (P<sub>1</sub> and P<sub>2</sub>).</p>
+						<p>Our <code>x</code> coordinates must always stay between <code>0</code> and <code>1</code> but we have more wiggle room with our <code>y</code>s</p>
+						<p>If we keep the y coordinate of our handles between 0 and 1 our changes will be applied within their start and end parameters. So if we are growing an object, it will go from it's original size to it's larger size continuously growing the entire transition.</p>
+						<p>If any of our <code>y</code> coordinates are less than 0 or greater than 1 we can make some interesting effects such as our link shrinking before it got bigger</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> Let's return to our hover example</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="curve" class="cubic-bezier-animation">
 					<h1>Cubic Bezier</h1>
 					<div class="col-2">
 						<figure>
-							<img src="./assets/curves/bezier.svg" width="400px">
-							<figcaption><code>cubic-bezier<br>(0, 0.71, 0.64, 1.23)</code></figcaption>
+							<img src="./assets/curves/hover-curve.png" width="400px">
 						</figure>
 						<div>
-							<h2>The Animation</h2>
-							<svg viewBox="0 0 400 400" width="400" height="400" class="bounce" id="bounce">
-								<circle class="ball" r="50" cx="220" cy="300"></circle>
-								<line x1="0" y1="350" x2="400" y2="350"></line>
-							</svg>
-							<button class="toggle" onclick="toggle('bounce')" type="button" id="bounce">
-								<span class="material-symbols-outlined">play_arrow</span>
-							</button>
+							<div style="text-align: center">
+								<h2>Without</h2>
+								<a href="#/6" class="my-link">My Link</a>	
+							</div>
+							<div style="margin-top: 3em; text-align: center;">
+								<h2>With</h2>
+								<a href="#/6" class="my-link hover-transition">My Link</a>
+								<pre style="margin-top: 2rem; text-align: center;"><code>cubic-bezier(0.74,-0.95,0.23,1.7);</code></pre>
+							</div>
 						</div>
 					</div>
+					<aside class="notes">
+						<p>Notice that our curve extends above the x=1 axis and below the 0 x axis, this is why we shrink smaller than our original size and then become bigger than our final size, before finally settling in to our target scale.</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> There are some limitations however one of which when adding a transition between element heights, let's take a look</p>
+						</div>
+					</aside>
 				</section>
 
 				<section data-auto-animate class="auto-height">
@@ -324,6 +426,14 @@ a:hover, a:focus {
 							<div class="body" id="expansionPanel1Body">Panel Content</div>
 						</div>
 					</div>
+
+					<aside class="notes">
+						<p>One of the places we often animate the change between the heights of an element is when we are dealing with collapsible panels, either individual ones or multiples as part of an accordion.</p>
+						<p>Often once open we don't necessarily know how much height the content needs so we are tempted to try to transition from a height of 0 to a height of auto</p>
+						<div style="color:red;font-weight:bold;">--> (scrolls code)</div>
+						<p>Notice however that this will not work. the panel instantly opens and closes and the change is not animated.</p>
+						<div style="color:red;font-weight:bold;">--> (scrolls code)</div>
+					</aside>
 				</section>
 
 				<section data-auto-animate class="auto-height">
@@ -361,6 +471,12 @@ a:hover, a:focus {
 							<div class="body" id="expansionPanel1Body">Panel Content</div>
 						</div>
 					</div>
+					<aside class="notes">
+						<p>If I change the height to a fixed value such as 300px, we notice that our animation now works for both opening and closing.</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> But like I said earlier, we often don't know ahead of time how tall we actually need to be, so what can we do?</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="limitations-height-auto">
@@ -379,6 +495,17 @@ a:hover, a:focus {
 							JavaScript
 						</li>
 					</ul>
+					<aside class="notes">
+						<p>We have a couple of options</p>
+						<ul>
+							<li><strong>max-height</strong>: rather than changing the height, we change the max-height. We still need to use value (not auto) but we can overshoot the height and since we are operating on the max-height, the position element will expand and retract as directed. It's not very precise, will make the animation appear slower on longer blocks of content than on short ones because the there is more height to expand but it will get the job done.</li>
+							<li><strong><code>transform: scale()</code></strong>: scale will increase and decrease the visual aspect of an element but not the amount of space it take in the content flow, therefore, it can work well for a menu or something that has an absolute or fixed position, but not near as well for elements that are in the normal content flow.</li>
+							<li><strong>JavaScript</strong>We can use JS to find the height of and then change the height via javaScript on open and close which will prevent the need to guess.</li>
+						</ul>
+						<div style="color:red;font-weight:bold;">
+							<p>--> Before we move on to some other options and solutions let's pause for a second and talk about accessibility as it relates to animations</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="solutions">
@@ -390,6 +517,15 @@ a:hover, a:focus {
 						<li>Add ARIA for screen reader accessibility</li>
 					</ul>
 					<p>You will need JavaScript to make your show / hides accessible</p>
+					<aside class="notes">
+						When creating animations, specifically showing and hiding content, there are a couple things we will need to do and test for.
+						<ul>
+							<li>As always, we should use semantic tags in our HTML</li>
+							<li>We need to make sure that users can expand and collapse the content using a keyboard only</li>
+							<li>Need to add ARIA to add context as to the state of our content (expanded / collapsed) so that assistive technologies such as screen readers can appropriately inform the user about the state of the content</li>
+						</ul>
+						<p><strong>NOTE:</strong> You will need to use JavaScript to toggle the ARIA properties when the panel is expanded or collapsed.</p>
+					</aside>
 				</section>
 
 				<section class="a11y-motion transition-a11y">
@@ -406,11 +542,22 @@ a:hover, a:focus {
 	/** Animations and transitions go here **/
 }
 </code></pre>
+					<aside class="notes">
+						<p>Furthermore, we need to consider motion. On their devices, users can set that they prefer reduced motion. We can access this property via a media query and can therefore only conditionally include the animations for those that do not have this setting enabled.</p>
+					</aside>
 				</section>
 
 				<section class="what-about-display-none">
 					<h1>What about using display: none?</h1>
 					<h2 class="fragment">Animations</h2>
+					<aside class="notes">
+						<p>Let's go back to our example, we know that going from a height of 0 to a height of auto and vice versa does not work, so what about display none?</p>
+						<p>At the moment, you can't transition from something to nothing or from nothing to something. So we can't transition to and from display none.</p>
+						<p>There has been talk about changing this behavior in the future to allow us to, but as of right now if we want to animate to and from display none, we need to use an animation.</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> So how do animations differ from transitions?</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="animations-how">
@@ -429,6 +576,17 @@ a:hover, a:focus {
 							Does not require a trigger
 						</li>
 					</ul>
+					<aside class="notes">
+						<ul>
+							<li><strong>Uses keyframes</strong>: First and foremost, animations use keyframes in which we define the behavior the animation should have</li>
+							<li><strong>Runs any number of times</strong>: We can start and stop them</li>
+							<li><strong>Don't require a trigger:</strong> They can just happen on load.</li>
+						</ul>
+						<div style="color:red;font-weight:bold;">
+							<p>--> Why would we use an animation rather than a transition?</p>
+						</div>
+					</aside>
+
 				</section>
 
 				<section class="animations-why">
@@ -447,6 +605,16 @@ a:hover, a:focus {
 							<code>display: none</code>
 						</li>
 					</ul>
+					<aside class="notes">
+						<ul>
+							<li><strong>Complex Animations:</strong> because of the fine grain control animations give us, we can create much more complex animations</li>
+							<li><strong>Repeated animations</strong>: We are not bound to needing a state change to start and stop the animation</li>
+							<li><strong>display: none</strong>: We can animate elements when they enter or exit the DOM</li>
+						</ul>
+						<div style="color:red;font-weight:bold;">
+							<p>--> Let's look at the structure of a keyframe</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="keyframe-structures">
@@ -462,6 +630,17 @@ a:hover, a:focus {
 
 </code></pre>
 					<p class="note">Declarations in a keyframe qualified with <code>!important</code> are ignored.</p>
+
+					<aside class="notes">
+						<p>The first part of the keyframe is it's name, which we use in our class to refer to which keyframes should be used for the animation</p>
+						<p>Keyframes define each step and when during the animation, our element changes are. We set pre-defined point, such as going from red to blue, and the browser will fill in the shift in between so if we are going from red to blue, halfway through the animation, the browser will have automatically determined that our element should be purple.</p>
+						<p>This does bring up the point that things that are binary (such as overflow, display...) cannot be animated. THere is nothing to move towards since these are binary values. It either is or it is not. A height, or opacity however is scalar, which is why we can can animate those.</p>
+						<p>In our example, we have a from which is the equivalent of 0%, and a to which is 100%. Either notation is acceptable. If we wanted to add more steps in between we could. we would define at what percent of the animation completion the change styles should be and add a rule inside of the keyframe.</p>
+						<p>It is important to note that <code>!important</code> does not work inside of keyframes. If a declaration contains and important, the declaration will be ignored</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> Let's change our animation in our expandable panel to use a keyframe</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="animations revisit-expansion">
@@ -490,6 +669,13 @@ a:hover, a:focus {
 							<div class="body" id="expansionPanel1Body">Panel Content</div>
 						</div>
 					</div>
+					<aside class="notes">
+						<p>Our keyframe works by animating the change in scale of the panel content.</p>
+						<p>We notice that our animation works well when opening the panel but does not animate the close</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> Let's dig into the CSS to understand why</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="revisit-expansion-2-states">
@@ -514,6 +700,13 @@ a:hover, a:focus {
 	animation: expansion 250ms ease-in-out reverse;
 }
 </code></pre>
+					<aside class="notes">
+						<p>When we open we have javascript that adds an expanded class to the panel which changes the display property of the content from none to block.</p>
+						<p>On close, the class is removed. The and the object is immediately removed from the dom, preventing any kind of animation from being performed</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--></p>
+						</div>
+					</aside>
 				</section>
 				
 				<section class="revisit-expansion-html">
@@ -532,7 +725,15 @@ a:hover, a:focus {
 		</div>
 	</div>
 </code></pre>
-
+					<aside class="notes">
+						<p>In our HTML we have an on click on the panel header to open and close the panel</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> and we also need to add a listener for when the panel's animation ends</p>
+						</div>
+						<div style="color:red;font-weight:bold;">
+							<p>--> Our CSS therefore looks as follows</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="animations revisit-expansion-trigger">
@@ -557,6 +758,13 @@ a:hover, a:focus {
 	animation: expansion 250ms ease-in-out reverse;
 }
 </code></pre>
+					<aside class="notes">
+						<p>Once the animation has ended and the onanimationend event has triggered, then only can we add the display none (remove the expanded class) and remove the element from the DOM</p>
+						<p>so we are going to need an intermediary class that handles the closing of the element, and plays the animation in reverse.</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> let's take a peak at the JavaScript</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="revisit-expansion-js">
@@ -584,6 +792,24 @@ function togglePanel(panel) {
 	}
 }
 </code></pre>
+					<aside class="notes">
+						<ol>
+							<li>We find our panel, in this case by ID</li>
+							<li>We determine if it's expanded by checking if it has the .expanded class</li>
+							<li>If this expanded, we add the intermediary close class to it</li>
+							<li>If it's close, we add the open class</li>
+					</ol>
+					<p style="color:red;font-weight:bold;">--></p>
+					<p>On animation edn we do very similar logic,</p>
+					<ol>
+						<li>We find our panel and determine if it's opening</li>
+						<li>If yes, we clean up after ourself, remove the open class, and add expanded</li>
+						<li>If it was closing, we remove both the expanded and close classes which revert our element to having a display of none.</li>
+					</ol>
+						<div style="color:red;font-weight:bold;">
+							<p>--> </p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="revisit-expansion-output">
@@ -594,6 +820,13 @@ function togglePanel(panel) {
 						</button></h2>
 						<div class="body" id="animatedPanel2Body" onanimationend="togglePanel('animatedPanel2')">Panel Content</div>
 					</div>
+					<aside class="notes">
+						<p>we now have a working open and close animation.</p>
+						<p>The key is to listen to animation end events so that our animation has time to complete before we hide the element for good.</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> Our accessibility concerns for animation are very similar to those of transitions</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="showing-hidding-animations-a11y">
@@ -605,6 +838,18 @@ function togglePanel(panel) {
 						<li>Test for keyboard accessibility</li>
 						<li>Add ARIA for screen reader accessibility</li>
 					</ul>
+					<aside class="notes">
+						When creating animations, specifically showing and hiding content, there are a couple things we will need to do and test for.
+						<ul>
+							<li>As always, we should use semantic tags in our HTML</li>
+							<li>We need to make sure that users can expand and collapse the content using a keyboard only</li>
+							<li>Need to add ARIA to add context as to the state of our content (expanded / collapsed) so that assistive technologies such as screen readers can appropriately inform the user about the state of the content</li>
+						</ul>
+						<p><strong>NOTE:</strong> The code samples in this talk do not have all of the ARIA included in them so that we could really focus on the transition aspect!!</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> But what about all those fancy loaders we often see, those are usually made from SVGs. How do we apply CSS animations to SVGs?</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="animations-and-svgs">
@@ -622,6 +867,13 @@ function togglePanel(panel) {
 					<button class="toggle" onclick="toggle('loader2')" type="button">
 						<span class="material-symbols-outlined">play_arrow</span>
 					</button>
+
+					<aside class="notes">
+						<p>We are going to use walk though creating the following loader</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> Let's peak at what our SVG looks like under the covers.</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="the-svg">
@@ -637,6 +889,13 @@ function togglePanel(panel) {
 	<p>Loading...</p>
 </div>
 </code></pre>
+					<aside class="notes">
+						<p>Inline inside of our HTML, our SVG looks as follows.</p>
+						<p>It is composed of 5 rectangles. All an SVG is under the covers is XML, so we can place them inside of our HTML, and access the elements with CSS like any other elements, which a couple of caveats. Some of our properties will not be the same for svg elements as for HTML elements, notably for this example, background.</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> Because we have the SVG inside of our HTML (and not being imported by an image tag) we can add the CSS that drives the loader with all of our other CSS in our CSS file.</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="the-svg-css">
@@ -661,6 +920,14 @@ rect:nth-of-type(3) { fill: #4484c5; }
 rect:nth-of-type(4) { fill: #0A3F7F; }
 rect:nth-of-type(5) { fill: #122849; }
 </code></pre>
+					<aside class="notes">
+						<p>Currently our CSS simply positions the SVG on the page and colors the individual rectangles that form our SVG</p>
+						<p>Notice that we use the property <code>fill</code>. This is one of the ways in which styling SVGs differ from HTML elements. When changing the background color rather than than <code>background</code> we use <code>fill</code>.</p>
+						<p>The structure though is the same, we have a selector, and then in the rule, we have declarations with properties and values</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> Let's start animating the rectangles</p>
+						</div>
+					</aside>
 			  </section>
 
 				<section data-auto-animate class="the-svg-css-animation">
@@ -688,6 +955,17 @@ rect:nth-of-type(5) { fill: #122849; }
 	animation: loader 3s ease-in-out infinite;
 }
 </code></pre>
+					<aside class="notes">
+						<p>We add a keyframe with 3 different rules. The first and last (the from and 2 define where we want to be at the start and end of the animation.</p>
+						<p>The middle one (50%) defines that halfway through the animation we want the rectangle completely collapsed</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--></p>
+						</div>
+						<p>Then we set the animation on the rectangles. It will take 3 seconds to run the animation and we will make it run an infinite number of times.</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> However all of our rectangles expand and retract in unison. Let's fix that.</p>
+						</div>
+					</aside>
 				</section>
 
 				<section data-auto-animate class="the-svg-css-deplay">
@@ -707,6 +985,18 @@ rect:nth-of-type(5) { fill: #122849; }
 .loader rect:nth-of-type(4) { fill: #0A3F7F; animation-delay: 900ms; }
 .loader rect:nth-of-type(5) { fill: #122849; animation-delay: 1200ms; }
 </code></pre>
+					<aside class="notes">
+						<p>Since the animation is the same for each elements, we don't need to give them their own keyframes, we only need to offset when the animation starts for each rectangle.</p>
+						<p>To do this we use the <code>animation-delay</code> property, which allows us to delay the start of the animation.</p>
+						<p>For each rectangle we therefore add a different <code>animation-delay</code> value which will allow our rectangles to rectangles to seem as thought they are operating independently</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--></p>
+						</div>
+						<p>Then we set the animation on the rectangles. It will take 3 seconds to run the animation and we will make it run an infinite number of times.</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--></p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="the-svg-css-output">
@@ -725,6 +1015,12 @@ rect:nth-of-type(5) { fill: #122849; }
 						<span class="material-symbols-outlined">play_arrow</span>
 					</button>
 </code></pre>
+					<aside class="notes">
+						<p>With our delays applied, we not get our desired effect.</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> Because this is a long animation, it can technically run forever, we have some additional accessibility concerns we didn't have with our shorter transitions.</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="a11y-motion pause-stop-hide">
@@ -750,6 +1046,15 @@ rect:nth-of-type(5) { fill: #122849; }
 						</div>
 					</div>
 					<p>there is a mechanism for the user to pause, stop, or hide it <strong>unless the movement, blinking, or scrolling is part of an activity where it is essential</strong>...</p>
+					<aside class="notes">
+						<p>Because our animation could last longer than 5 seconds (depending on what we use it for). and there is movement, we have to allow the the user to pause, stop, or hide it.</p>
+						<p>but there is a caveat in there, "unless the movement, blinking, or scrolling is part of an activity that is essential.</p>
+						<p>This is where loaders are tricky, because they inform the user that something is happening, in that sense they are providing valuable information but they can be very movement heavy which can cause discomfort to some users such as those with vestibular disorders for some of whom, motion can cause dizziness and or nausea.</p>
+						<p>In this presentation we have a start and stop for the animation, another option could be to conditionally change the nature of the animation when for users to refer not to have motion via the <code>@media (prefers-reduced-motion: reduced)</code> media query.</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> Flashing</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="a11y-motion flashing">
@@ -760,6 +1065,13 @@ rect:nth-of-type(5) { fill: #122849; }
 						<li>flashes more than three times in any one second period,</li>
 						<li>or the flash is below the general flash and red flash thresholds.</li>
 					</ul>
+					<aside class="notes">
+						<p>Not and issue in this animation, but also needing consideration (and this is true for both animations and transitions), if we are planning on having our animation flash, we need to take care that we don't flash more than 3 times per second.</p>
+						<p>This is to prevent our animations from inducing seizures in our users.</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> Transform origin</p>
+						</div>
+					</aside>
 				</section>
 
 				<section data-auto-animate class="transform-origin">
@@ -769,18 +1081,21 @@ rect:nth-of-type(5) { fill: #122849; }
 	animation: loader 3s ease-in-out infinite;
 }
 </code></pre>
-					<p class="fragment" data-id="transform-origin">the point around which a transformation is applied</p>
-				</section>
-
-				<section data-auto-animate class="transform-origin">
-					<h1>Transform Origin</h1>
-					<p><code>transform-origin: top right;</code></p>
-					<p data-id="transform-origin">the point around which a transformation is applied</p>
-					<svg viewBox="0 0 200 200" width="250" height="250" style="border: solid 1px gray">
-						<rect x="50" y="50" width="100" height="100" fill="none" stroke="#f78c00" stroke-dasharray="5 5"></rect>
-						<circle cx="150" cy="50" r="8" fill="#f78c00"></circle>
-						<rect x="50" y="50" width="100" height="100" fill="none" stroke="#0A3F7F" style="transform-box: fill-box; transform-origin: top right; transform: rotate(-25deg)"></rect>
-					</svg>
+					<div class="fragment" data-id="transform-origin">
+						<p>the point around which a transformation is applied</p>
+						<svg viewBox="0 0 200 200" width="250" height="250" style="border: solid 1px gray">
+							<rect x="50" y="50" width="100" height="100" fill="none" stroke="#f78c00" stroke-dasharray="5 5"></rect>
+							<circle cx="150" cy="50" r="8" fill="#f78c00"></circle>
+							<rect x="50" y="50" width="100" height="100" fill="none" stroke="#0A3F7F" style="transform-box: fill-box; transform-origin: top right; transform: rotate(-25deg)"></rect>
+						</svg>
+					</div>
+					<aside class="notes">
+						<p>You may have noticed that we set the <code>transform-origin</code> property value to <code>center</code> in our loader animation</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--></p>
+						</div>
+						<p>This is the point from which we want animations to start affecting our elements. This is especially helpful to understand when animating an element's scale, rotation, or position</p>
+					</aside>
 				</section>
 				
 				<section class="transform-origin" data-auto-animate>
@@ -807,6 +1122,13 @@ rect:nth-of-type(5) { fill: #122849; }
 							<p><code>transform-origin: top left</code><br>of the SVG</p>
 						</div>
 					</div>
+					<aside class="notes">
+						<p>In HTML the <code>transform-origin</code> is the center of the element by default</p>
+						<p>For SVGs however, it is the top left hand corner of the SVG, not the element in the svg, but the svg itself</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> Since calculating the center of the element can get quite tricky, especially in a complex design, we have a property that can help us with that.</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="transform-origin" data-auto-animate>
@@ -840,6 +1162,13 @@ rect:nth-of-type(5) { fill: #122849; }
 </code></pre>
 						</div>
 					</div>
+					<aside class="notes">
+						<p>By changing the <code>transform-box</code> property value of SVG elements to <code>fill-box</code>, we can change <code>transform-origin</code> to be relative to the element rather than the SVG.</p>
+						<p>The default then becomes, the top left of the of the element, which we can alter like before to where ever we want in our element.</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> The last thing I want to talk about is timing.</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="timing">
@@ -848,6 +1177,14 @@ rect:nth-of-type(5) { fill: #122849; }
 					<p>up to 500ms for complex animations</p>
 
 					<p class="note">Loaders and other extremely complex animations can have much longer animations</p>
+					<aside class="notes">
+						<p>Although there isn't a hard fast, one size fits all, generally speaking we want our micro animations to be fast, around 250 milliseconds.</p>
+						<p>The more complex or "big" the animation is, the longer it can be</p>
+						<p>It's a balancing act between making sure that the animation is slow enough that it looks good and the user can see it and understand what is happening, but fast enough that the application or website does not appear to be slow or laggy.</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--> Recap</p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="recap">
@@ -860,6 +1197,12 @@ rect:nth-of-type(5) { fill: #122849; }
 						<li>Animations in SVGs</li>
 						<li>Accessibility Concerns</li>
 					</ul>
+					<aside class="notes">
+						<p>We covered a lot today:</p>
+						<div style="color:red;font-weight:bold;">
+							<p>--></p>
+						</div>
+					</aside>
 				</section>
 
 				<section class="thank-you">
@@ -884,6 +1227,9 @@ rect:nth-of-type(5) { fill: #122849; }
 						</ul>
 						<img class="ags" src="./assets/ags.svg" alt="andromeda Galactic Solutions">
 					</div>
+					<aside class="notes">
+						<p>Thank you for coming, you can find the slides for this presentation on my website at martine.dev. And I am happy to answer any questions you may have.</p>
+					</aside>
 				</section>
 			
 			</div>
